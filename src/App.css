@@ -73,26 +73,31 @@ body {
 }
 
 /* Adjusted for the perfect heart shape */
-/* 1. The wrapper holds the neon glow and the interactive zoom */
+/* 1. The wrapper perfectly hugs the image and projects the Blue/Purple glow */
 .heart-glow-wrapper {
-    filter: drop-shadow(0 0 15px rgba(24, 11, 101, 0.9)) drop-shadow(0 0 5px rgba(8, 126, 38, 0.942)); 
+    /* CRITICAL FIX: Forces the wrapper to be exactly 200x200 to match the image */
+    display: inline-flex; 
+    
+    /* The Blue and Purple Neon Glow */
+    filter: drop-shadow(0 0 10px #00e5ff) drop-shadow(0 0 25px #aa00ff); 
+    
     cursor: pointer; 
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
     z-index: 2;
 }
 
-/* The neon pink glow when you click it */
+/* Make it glow even brighter blue/purple when clicked */
 .heart-glow-wrapper.zoom-effect {
     transform: scale(1.3) rotate(5deg);
-    filter: drop-shadow(0 0 30px rgba(255, 0, 127, 0.9));
+    filter: drop-shadow(0 0 20px #00e5ff) drop-shadow(0 0 45px #aa00ff);
 }
 
-/* 2. The image ONLY handles the heart cut-out shape now */
+/* 2. The image ONLY handles the heart cut-out shape */
 .profile-img {
     width: 200px;
     height: 200px;
     object-fit: cover;
-    display: block; /* Removes any tiny spacing glitches */
+    display: block; 
     
     /* Safari prefix */
     -webkit-clip-path: path("M100,195.9 C100,195.9 200,119.3 200,65.9 C200,32.3 172.6,4.9 139,4.9 C119.5,4.9 107.5,14.6 100,24.4 C92.5,14.6 80.5,4.9 61,4.9 C27.4,4.9 0,32.3 0,65.9 C0,119.3 100,195.9 100,195.9 Z");
