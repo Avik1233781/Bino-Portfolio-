@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import profilePic from './assets/Bino.png'; // Change this to her photo file name!
+import profilePic from './assets/b.jepg'; // Change this to her photo file name!
 import './App.css';
 
 function App() {
