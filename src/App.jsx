@@ -127,6 +127,12 @@ function App() {
 
         {/* Profile Container */}
         <div className="profile-container">
+          <div 
+            className={`heart-glow-wrapper ${showSurprise ? 'zoom-effect' : ''}`} 
+            onClick={handleProfileClick}
+          >
+            
+          </div>
           <img 
             src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&q=80"
             alt="Profile" 
