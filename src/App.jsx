@@ -76,7 +76,7 @@ function App() {
 
   // 🌟 UPDATED: Generic placeholders for her portfolio
   const portfolioData = {
-    name: "Her World",
+    name: "Binodini Sarkar",
     role: "Subtitle Placeholder | Creative | Passionate",
     bio: "Explore the creativity, passion, and brilliance she brings to life. This space is dedicated to showcasing her amazing work and beautiful moments.",
     
