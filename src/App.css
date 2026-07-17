@@ -74,12 +74,10 @@ body {
 
 /* Adjusted for the perfect heart shape */
 .profile-img {
+    /* Set to 200px to perfectly match the heart path coordinates */
     width: 200px;
     height: 200px;
     object-fit: cover;
-    
-    /* Fallback color: If the image fails, a solid pink heart will show instead of nothing */
-    background-color: #ff007f; 
     
     /* Safari support prefix */
     -webkit-clip-path: path("M100,195.9 C100,195.9 200,119.3 200,65.9 C200,32.3 172.6,4.9 139,4.9 C119.5,4.9 107.5,14.6 100,24.4 C92.5,14.6 80.5,4.9 61,4.9 C27.4,4.9 0,32.3 0,65.9 C0,119.3 100,195.9 100,195.9 Z");
@@ -87,18 +85,19 @@ body {
     /* Standard heart shape */
     clip-path: path("M100,195.9 C100,195.9 200,119.3 200,65.9 C200,32.3 172.6,4.9 139,4.9 C119.5,4.9 107.5,14.6 100,24.4 C92.5,14.6 80.5,4.9 61,4.9 C27.4,4.9 0,32.3 0,65.9 C0,119.3 100,195.9 100,195.9 Z");
     
-    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8)); 
+    /* The double drop-shadow creates the exact teal/cyan neon glow from your screenshot */
+    filter: drop-shadow(0 0 10px rgba(100, 255, 218, 0.6)) drop-shadow(0 0 2px rgba(100, 255, 218, 0.8));
+    
     cursor: pointer; 
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
     z-index: 2;
 }
 
-/* The Fun Zoom & Pink Glow for Profile ONLY */
+/* Optional: Keep the pink Easter egg zoom effect when clicked */
 .profile-img.zoom-effect {
     transform: scale(1.3) rotate(5deg);
     filter: drop-shadow(0 0 30px rgba(255, 0, 127, 0.9));
 }
-
 /* Shared Pop-up Message Styles */
 .catchy-message {
     position: absolute;
