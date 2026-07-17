@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Her Portfolio</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* 1. ANIMATED CUSTOM PINKISH BACKGROUND */
+        body {
+            /* Changed to dynamic pink gradient */
+            background: linear-gradient(-45deg, #ff7eb3, #ff758c, #ffb199, #f48fb1);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .portfolio-container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* 2. HEADER SECTION */
+        .header-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* 3. PROFILE HEART ANIMATION */
+        @keyframes floatBob {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .profile-container {
+            position: relative;
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            animation: floatBob 4s ease-in-out infinite; 
+            margin-bottom: 2rem;
+            z-index: 50;
+        }
+
+        /* Adjusted for the perfect heart shape */
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            /* Creates the custom heart shape */
+            clip-path: path("M100,195.9 C100,195.9 200,119.3 200,65.9 C200,32.3 172.6,4.9 139,4.9 C119.5,4.9 107.5,14.6 100,24.4 C92.5,14.6 80.5,4.9 61,4.9 C27.4,4.9 0,32.3 0,65.9 C0,119.3 100,195.9 100,195.9 Z");
+            /* Soft white drop shadow that hugs the heart */
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8)); 
+            cursor: pointer; 
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
+            z-index: 2;
+        }
+
+        /* The Fun Zoom & Pink Glow for Profile ONLY */
+        .profile-img.zoom-effect {
+            transform: scale(1.3) rotate(5deg);
+            /* Shifts the heart's glow to bright neon pink when clicked */
+            filter: drop-shadow(0 0 30px rgba(255, 0, 127, 0.9));
+        }
+
+        /* The Fun Zoom for Clock ONLY */
+        .analog-clock.zoom-effect {
+            transform: scale(1.3) rotate(5deg);
+            border-color: #ff007f; 
+            box-shadow: 0 0 40px rgba(255, 0, 127, 0.8), inset 0 0 15px rgba(255, 0, 127, 0.4);
+        }
+
+        /* The Easter Egg Text */
+        .catchy-message {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, 20px) scale(0.5);
+            opacity: 0;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid #ff007f;
+            color: #ff007f;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 900;
+            font-size: 1.1rem;
+            white-space: nowrap;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2), 0 0 15px rgba(255, 0, 127, 0.4);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            pointer-events: none;
+            z-index: 60;
+        }
+
+        .catchy-message.show-message {
+            transform: translate(-50%, 80px) scale(1);
+            opacity: 1;
+        }
+
+        /* TEXT STYLING */
+        h1 { font-size: 2.8rem; color: #ffffff; margin-bottom: 0.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .highlight-text { color: #ffe066; text-shadow: 0 0 10px rgba(255, 224, 102, 0.6); }
+        h2 { font-size: 1.2rem; color: #ffffff; margin-bottom: 1.5rem; font-weight: 500; opacity: 0.9; }
+        .bio-text { max-width: 600px; margin: 1rem auto; color: #ffffff; opacity: 0.9; }
+
+        /* 4. DUAL CLOCK DISPLAY */
+        .dual-clock-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .interactive-clock-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            z-index: 40;
+        }
+
+        .analog-clock {
+            width: 140px;
+            height: 140px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            position: relative;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
+        }
+
+        .hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom center;
+            background: #ffffff;
+            border-radius: 10px;
+            transition: transform 0.05s cubic-bezier(0.4, 2.08, 0.55, 0.44);
+        }
+
+        .hour-hand { width: 6px; height: 40px; margin-left: -3px; z-index: 1; }
+        .min-hand { width: 4px; height: 55px; margin-left: -2px; z-index: 2; }
+        .sec-hand { width: 2px; height: 65px; margin-left: -1px; background: #ffe066; z-index: 3; }
+        .clock-center {
+            position: absolute; top: 50%; left: 50%; width: 12px; height: 12px;
+            background: #ffe066; border-radius: 50%; transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px rgba(255, 224, 102, 0.8); z-index: 4;
+        }
+
+        .clock-wrapper {
+            display: inline-block; padding: 0.8rem 2rem; background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px; border: 2px solid #ffffff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.2);
+            animation: neonPulse 2s infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            from { box-shadow: 0 0 5px rgba(255, 255, 255, 0.3), inset 0 0 5px rgba(255, 255, 255, 0.2); }
+            to { box-shadow: 0 0 25px rgba(255, 255, 255, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.6); }
+        }
+
+        #live-clock { color: #ffffff; font-size: 1.2rem; font-family: 'Courier New', Courier, monospace; font-weight: bold; letter-spacing: 2px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+
+        /* 5. CHROME TAB LINKS */
+        .links-section { text-align: center; margin-bottom: 4rem; }
+        .button-group { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
+        
+        .link-button {
+            display: inline-block; padding: 1rem 3rem; background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px); color: #ffffff; border-radius: 20px; 
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            text-decoration: none; font-weight: 600; transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .link-button:hover { background: rgba(255, 255, 255, 0.4); transform: translateY(-5px); color: #ff007f; }
+
+        /* 6. PROJECTS SECTION */
+        .projects-section h3 { font-size: 1.8rem; margin-bottom: 2rem; text-align: center; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+        .project-grid { display: grid; grid-template-columns: repeat(2, 1fr) !important; gap: 1.8rem; }
+        .project-card {
+            grid-column: span 1 !important; width: 100% !important;
+            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); padding: 2rem;
+            border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.3); transition: all 0.4s ease;
+        }
+        .project-card:hover { transform: translateY(-8px); border-color: #ffffff; background: rgba(255, 255, 255, 0.25); }
+        .project-card h4 { color: #ffe066; font-size: 0.9rem; margin-bottom: 1rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+        .project-title { color: #ffffff; font-size: 1.2rem; margin-bottom: 0.8rem; font-weight: bold; }
+        .project-desc { font-size: 0.95rem; color: #ffffff; opacity: 0.9; margin-bottom: 1.5rem; }
+        .project-link { color: #ffffff; text-decoration: none; font-weight: 600; border-bottom: 1px solid #ffffff; }
+        .project-card:hover .project-link { color: #ff007f; border-bottom-color: #ff007f; }
+        footer { text-align: center; margin-top: 5rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.3); color: #ffffff; opacity: 0.8; font-size: 0.85rem; }
+
+        /* 🌟 SCROLL ANIMATIONS */
+        .hidden-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .show-scroll {
+            opacity: 1;
+            transform: translateY(0); 
+        }
+
+        .project-card:nth-child(1) { transition-delay: 0s; }
+        .project-card:nth-child(2) { transition-delay: 0.15s; }
+        .project-card:nth-child(3) { transition-delay: 0.3s; }
+        .project-card:nth-child(4) { transition-delay: 0.45s; }
+
+        @media screen and (max-width: 768px) {
+            .portfolio-container { padding: 2rem 1rem; }
+            .button-group { flex-direction: row; gap: 10px; justify-content: center; } 
+            .link-button { 
+                width: 45%; border-radius: 10px;
+                text-align: center; padding: 0.8rem 0.2rem; font-size: 0.9rem;
+            }
+            .project-grid { grid-template-columns: 1fr !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="portfolio-container">
+        
+        <header class="header-section">
+            
+            <div class="profile-container">
+                <img src="Bino.png" alt="Profile" class="profile-img" id="my-profile-pic" onerror="this.src='https://via.placeholder.com/200/ffffff/ff007f?text=Photo'" />
+                <div id="catchy-msg" class="catchy-message">
+                    ✨ Click for a surprise! ✨
+                </div>
+            </div>
+            
+            <div style="display: flex; justify-content: center;">
+                <h1 class="typing-container hidden-scroll">Welcome to <span class="highlight-text">Her World</span></h1>
+            </div>
+            
+            <div class="dual-clock-container">
+                <div class="interactive-clock-wrapper">
+                    <div class="analog-clock" id="interactive-analog-clock" title="Click the clock!">
+                        <div class="hand hour-hand" id="hour-hand"></div>
+                        <div class="hand min-hand" id="min-hand"></div>
+                        <div class="hand sec-hand" id="sec-hand"></div>
+                        <div class="clock-center"></div>
+                    </div>
+                    <div class="catchy-message" id="clock-message">
+                        ⏳ Time spent together is magic! 🚀
+                    </div>
+                </div>
+
+                <div class="clock-wrapper">
+                    <div id="live-clock">Loading...</div>
+                    <div id="live-date"></div> 
+                </div>
+            </div>
+            
+            <h2 class="hidden-scroll">Subtitle Placeholder | Creative | Passionate</h2>
+            <p class="bio-text">Explore the creativity, passion, and brilliance she brings to life. This space is dedicated to showcasing her amazing work and beautiful moments.</p>
+        </header>
+
+        <section class="links-section">
+            <h3 class="hidden-scroll">Quick Links</h3>
+            <div class="button-group">
+                <a href="#" target="_blank" class="link-button">Link One</a>
+                <a href="#" target="_blank" class="link-button">Link Two</a>
+                <a href="#" target="_blank" class="link-button">Email Me</a>
+                <a href="#" target="_blank" class="link-button">Instagram</a>
+            </div>
+        </section>
+
+        <section class="projects-section">
+            <h3 class="hidden-scroll">Her Works</h3>
+            <div class="project-grid">
+                <div class="project-card hidden-scroll">
+                    <h4>✨ Category One</h4>
+                    <p class="project-title"><strong>Creative Project One</strong></p>
+                    <p class="project-desc">A brief description of this beautiful project goes here.</p>
+                    <a href="#" target="_blank" class="project-link">View Project</a>
+                </div>
+                <div class="project-card hidden-scroll">
+                    <h4>🎨 Category Two</h4>
+                    <p class="project-title"><strong>Creative Project Two</strong></p>
+                    <p class="project-desc">A brief description of this amazing work goes here.</p>
+                    <a href="#" target="_blank" class="project-link">View Project</a>
+                </div>
+                <div class="project-card hidden-scroll">
+                    <h4>📸 Category Three</h4>
+                    <p class="project-title"><strong>Creative Project Three</strong></p>
+                    <p class="project-desc">A brief description of this stunning gallery goes here.</p>
+                    <a href="#" target="_blank" class="project-link">View Project</a>
+                </div>
+                <div class="project-card hidden-scroll">
+                    <h4>⭐ Category Four</h4>
+                    <p class="project-title"><strong>Creative Project Four</strong></p>
+                    <p class="project-desc">A brief description of this fun piece goes here.</p>
+                    <a href="#" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© by Avik Makal <span id="current-year"></span> Made with HTML and CSS.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // 1. PROFILE PICTURE CLICK ANIMATION
+        const profilePic = document.getElementById('my-profile-pic');
+        const catchyMsg = document.getElementById('catchy-msg');
+
+        profilePic.addEventListener('click', () => {
+            profilePic.classList.add('zoom-effect');
+            catchyMsg.classList.add('show-message');
+
+            setTimeout(() => {
+                profilePic.classList.remove('zoom-effect');
+                catchyMsg.classList.remove('show-message');
+            }, 3000); 
+        });
+
+        // 2. CLOCK CLICK ANIMATION
+        const analogClockElement = document.getElementById('interactive-analog-clock');
+        const clockMsg = document.getElementById('clock-message');
+
+        analogClockElement.addEventListener('click', () => {
+            analogClockElement.classList.add('zoom-effect');
+            clockMsg.classList.add('show-message');
+
+            setTimeout(() => {
+                analogClockElement.classList.remove('zoom-effect');
+                clockMsg.classList.remove('show-message');
+            }, 3000); 
+        });
+
+        // 3. DUAL CLOCK TICKING LOGIC
+        const hourHand = document.querySelector('.hour-hand');
+        const minHand = document.querySelector('.min-hand');
+        const secHand = document.querySelector('.sec-hand');
+        const digitalClock = document.getElementById('live-clock');
+        const liveDate = document.getElementById('live-date');
+        
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            
+            const displayHours = hours % 12 || 12; 
+            const displayMinutes = minutes < 10 ? '0' + minutes : minutes;
+            const displaySeconds = seconds < 10 ? '0' + seconds : seconds;
+            
+            digitalClock.textContent = `⏱ ${displayHours}:${displayMinutes}:${displaySeconds} ${ampm}`;
+
+            const secondsDegrees = (seconds / 60) * 360;
+            const minutesDegrees = ((minutes + seconds / 60) / 60) * 360;
+            const hoursDegrees = ((hours % 12 + minutes / 60) / 12) * 360;
+
+            secHand.style.transform = `rotate(${secondsDegrees}deg)`;
+            minHand.style.transform = `rotate(${minutesDegrees}deg)`;
+            hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // 4. SCROLL ANIMATIONS OBSERVER 
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show-scroll');
+                } else {
+                    entry.target.classList.remove('show-scroll');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        const hiddenElements = document.querySelectorAll('.hidden-scroll');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>
