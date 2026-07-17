@@ -77,7 +77,16 @@ body {
     width: 200px;
     height: 200px;
     object-fit: cover;
+    
+    /* Fallback color: If the image fails, a solid pink heart will show instead of nothing */
+    background-color: #ff007f; 
+    
+    /* Safari support prefix */
+    -webkit-clip-path: path("M100,195.9 C100,195.9 200,119.3 200,65.9 C200,32.3 172.6,4.9 139,4.9 C119.5,4.9 107.5,14.6 100,24.4 C92.5,14.6 80.5,4.9 61,4.9 C27.4,4.9 0,32.3 0,65.9 C0,119.3 100,195.9 100,195.9 Z");
+    
+    /* Standard heart shape */
     clip-path: path("M100,195.9 C100,195.9 200,119.3 200,65.9 C200,32.3 172.6,4.9 139,4.9 C119.5,4.9 107.5,14.6 100,24.4 C92.5,14.6 80.5,4.9 61,4.9 C27.4,4.9 0,32.3 0,65.9 C0,119.3 100,195.9 100,195.9 Z");
+    
     filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8)); 
     cursor: pointer; 
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); 

@@ -122,12 +122,13 @@ function App() {
     <div className="portfolio-container">
       
       {/* HEADER SECTION */}
-      <header className="header-section fade-in-down">
-        
+      <header className="header fade-in-up delay-0"> 
+  
+
         {/* Profile Container */}
         <div className="profile-container">
           <img 
-            src={profilePic} 
+            src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&q=80"
             alt="Profile" 
             className={`profile-img ${showSurprise ? 'zoom-effect' : ''}`} 
             onClick={handleProfileClick}
