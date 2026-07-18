@@ -81,7 +81,7 @@ function App() {
     bio: "Explore the creativity, passion, and brilliance she brings to life. This space is dedicated to showcasing her amazing work and beautiful moments.",
     
     links: [
-      { id: 1, label: "Link One", url: "#" }, 
+      { id: 1, label: "LinkedIn", url: "#" }, 
       { id: 2, label: "Link Two", url: "#"}, 
       { id: 3, label: "Email Me", url: "#" },
       { id: 4, label: "Instagram", url: "#" }
